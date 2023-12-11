@@ -466,9 +466,6 @@ class _HTTPConnection(httputil.HTTPMessageDelegate):
             ssl_ctx = ssl.create_default_context(
                 ssl.Purpose.SERVER_AUTH, cafile=self.request.ca_certs
             )
-            if not self.request.validate_cert:
-                ssl_ctx.check_hostname = False
-                ssl_ctx.verify_mode = ssl.CERT_NONE
             if self.request.client_cert is not None:
                 ssl_ctx.load_cert_chain(
                     self.request.client_cert, self.request.client_key
